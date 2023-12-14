@@ -440,6 +440,10 @@ namespace test_DataBase
 
                 while (reader.Read())
                 {
+
+
+
+
                     var date = reader.GetDateTime(0);
                     timelist.Add((DateTime)date);
                    
