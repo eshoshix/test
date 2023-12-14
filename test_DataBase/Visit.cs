@@ -495,12 +495,18 @@ namespace test_DataBase
 
         private void panel2_Click(object sender, EventArgs e)
         {
+            button2DizClick();
             dataGridView1.ClearSelection();
             textBox1.Clear();
             dataGridView2.ClearSelection();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
