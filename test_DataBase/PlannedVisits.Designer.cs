@@ -86,7 +86,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PlannedVisits";
-            this.Text = "Записи к вам";
+            this.Text = "Записи ваших пациентов";
             this.Load += new System.EventHandler(this.PlannedVisits_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
