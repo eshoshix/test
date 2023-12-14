@@ -90,7 +90,7 @@ namespace test_DataBase
         {
             PlannedVisits PlannedVisits = new PlannedVisits(CurrentId);
 
-            PlannedVisits.ShowDialog();
+            PlannedVisits.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace test_DataBase
         private void button5_Click_1(object sender, EventArgs e)
         {
            timetable tt = new timetable(CurrentId);
-            tt.ShowDialog();
+            tt.Show();
 
         }
 
@@ -125,7 +125,7 @@ namespace test_DataBase
         {
             int id = CurrentId;
             Visit vv = new Visit(id);
-            vv.ShowDialog();
+            vv.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
