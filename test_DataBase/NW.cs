@@ -447,6 +447,16 @@ namespace test_DataBase
                     var date = reader.GetDateTime(0);
                     timelist.Add((DateTime)date);
                    
+
+
+
+
+
+
+
+
+
+
                 }
 
             }
