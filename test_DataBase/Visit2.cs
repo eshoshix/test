@@ -103,12 +103,13 @@ namespace test_DataBase
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var date = dateTimePicker1.Value.ToString("yyyyMMdd HH:mm");
-            var dateNow = DateTime.Now;
+            var date = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm");
+            var dateNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
             string querystring = $"UPDATE Больничные SET Дата_конца_заболевания = CONVERT(DATETIME, '{date}', 120), Дата_Выписки = CONVERT(DATETIME, '{dateNow}', 120) where [ID_Больничного] = '{CurrentIDSick}'";
             SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
             command.ExecuteNonQuery();
             DataBase.openConnection();
+            MessageBox.Show("Пациент успешно выписан с больничного", "Успех");
           
             
         }
