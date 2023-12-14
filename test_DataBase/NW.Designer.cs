@@ -271,7 +271,7 @@
             // 
             this.comboBox2.FormatString = "t";
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(403, 127);
+            this.comboBox2.Location = new System.Drawing.Point(403, 128);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(75, 25);
             this.comboBox2.TabIndex = 16;
