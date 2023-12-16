@@ -71,9 +71,9 @@ namespace test_DataBase
               
 
                 MessageBox.Show("Вы успешно вошли!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                NW NW1 = new NW(Id);
+                Client_acc CA = new Client_acc(Id);
                 this.Hide();
-                NW1.ShowDialog();
+                CA.ShowDialog();
                 this.Show();
                 
 

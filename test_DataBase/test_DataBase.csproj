@@ -74,6 +74,12 @@
     <Compile Include="admin_Login.Designer.cs">
       <DependentUpon>admin_Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientAcc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientAcc.Designer.cs">
+      <DependentUpon>ClientAcc.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="database1DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -85,6 +91,12 @@
     </Compile>
     <Compile Include="Dates.Designer.cs">
       <DependentUpon>Dates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatesALL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatesALL.Designer.cs">
+      <DependentUpon>DatesALL.cs</DependentUpon>
     </Compile>
     <Compile Include="DiagnozForm.cs">
       <SubType>Form</SubType>
@@ -163,8 +175,14 @@
     <EmbeddedResource Include="admin_Login.resx">
       <DependentUpon>admin_Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ClientAcc.resx">
+      <DependentUpon>ClientAcc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dates.resx">
       <DependentUpon>Dates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatesALL.resx">
+      <DependentUpon>DatesALL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DiagnozForm.resx">
       <DependentUpon>DiagnozForm.cs</DependentUpon>

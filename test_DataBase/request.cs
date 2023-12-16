@@ -3,71 +3,46 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using test_DataBase.Properties;
-using static MetroFramework.Drawing.MetroPaint.BorderColor;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 
 namespace test_DataBase
 {
-
-
-    enum RowState
+    public partial class request : MetroFramework.Forms.MetroForm
     {
-        Existed,
-        New,
-        Modified,
-        ModifiedNew,
-        Deleted
-    }
-
-    public partial class NW : MetroFramework.Forms.MetroForm
-    {
-
         DataBase DataBase = new DataBase();
-
-        int CurrentId;
-        public NW(int id)
+        int Currentid;
+        public request(int idClient)
         {
-            CurrentId = id;
+            InitializeComponent();
+           Currentid = idClient;
             StartPosition = FormStartPosition.CenterScreen;
 
-            
-            InitializeComponent();
 
-            label123();
+            InitializeComponent();
+           
+
 
             CosttextBox1.ReadOnly = true;
+
         }
 
+        private void request_Load(object sender, EventArgs e)
+        {
+            label123();
+            createColumns();
+            RefreshDataGrid(dataGridView1);
+            dataGridView1.ReadOnly = true;
+            aimtextBox1.MaxLength = 50;
+            comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        }
         private void label123()
         {
-            string querystring = $"select Фамилия,Имя,Отчество from Пациент where [ID_Пациента] = '{CurrentId}'";
-            SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
-            DataBase.openConnection();
-
-            using(SqlDataReader reader = command.ExecuteReader())
-            {
-                reader.Read();
-
-                string column1Data = reader["Фамилия"].ToString();
-                
-                string column2Data = reader["Имя"].ToString();
-
-                string column3Data = reader["Отчество"].ToString();
-
-
             
-
-            }
 
             string querystring2 = $"select ФИО, Специальность, [ID_Врача], [Стоимость Посещения] from Врач";
             SqlCommand command2 = new SqlCommand(querystring2, DataBase.getConnection());
@@ -78,7 +53,7 @@ namespace test_DataBase
             List<int> listID = new List<int>();
             using (SqlDataReader reader = command2.ExecuteReader())
             {
-                
+
                 while (reader.Read())
                 {
                     var doctorname = reader.GetString(0);
@@ -88,52 +63,42 @@ namespace test_DataBase
                     var IDDoctor = reader.GetInt32(2);
                     listID.Add(IDDoctor);
                     var cost = reader.GetDecimal(3);
-                     listCost.Add(cost); 
+                    listCost.Add(cost);
                 }
 
 
             }
 
-                savedDoctorIDs = listID;
-                savedCosts =  listCost;
-               
-                
-                foreach(var item in listSpec)
-                {
+            savedDoctorIDs = listID;
+            savedCosts = listCost;
 
-                    comboBox1.Items.Add(item);
 
-                }
+            foreach (var item in listSpec)
+            {
+
+                comboBox1.Items.Add(item);
+
+            }
 
 
         }
 
-                  List<int> savedDoctorIDs = new List<int>();
-                  List<decimal> savedCosts = new List<decimal>();
+        List<int> savedDoctorIDs = new List<int>();
+        List<decimal> savedCosts = new List<decimal>();
 
-       
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-
             var index = comboBox1.SelectedIndex;
-            if(index == -1)
+            if (index == -1)
             {
 
                 CosttextBox1.Text = "";
                 return;
             }
-            
-            CosttextBox1.Text = Convert.ToInt32( Math.Round(savedCosts[index])) + " руб.".ToString();
+
+            CosttextBox1.Text = Convert.ToInt32(Math.Round(savedCosts[index])) + " руб.".ToString();
             comboBox();
         }
 
@@ -164,13 +129,13 @@ namespace test_DataBase
                 return;
 
             }
-            
-            
 
-            
+
+
+
             var date = dateTimePicker1.Value.ToString("yyyyMMdd") + " " + comboBox2.Text;
 
-           
+
             var doctorId = savedDoctorIDs[doctor];
             string querystring3 = $"select [Стоимость посещения] from Врач where [ID_Врача] = '{doctorId}'";
             SqlCommand command3 = new SqlCommand(querystring3, DataBase.getConnection());
@@ -180,26 +145,24 @@ namespace test_DataBase
             {
                 reader.Read();
 
-               object column1Data = reader["Стоимость посещения"]; 
+                object column1Data = reader["Стоимость посещения"];
 
             }
 
-          
+
             var aim = aimtextBox1.Text;
-            string querystring = $"Insert into Запись_Прием ([ID_Врача],[ID_Пациента], [Дата_Посещения], [Цель_Посещения]) values('{doctorId}','{CurrentId}','{date}', '{aim}')";
+            string querystring = $"Insert into Запись_Прием ([ID_Врача],[ID_Пациента], [Дата_Посещения], [Цель_Посещения]) values('{doctorId}','{Currentid}','{date}', '{aim}')";
             SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
             DataBase.openConnection();
 
             command.ExecuteNonQuery();
 
             RefreshDataGrid(dataGridView1);
-           
+
             aimtextBox1.Clear();
-            MessageBox.Show("Вы успешно записаны на прием","Успех!");
-
-
-
+            MessageBox.Show("Вы успешно записаны на прием", "Успех!");
         }
+
 
         private int CellIdClient()
         {
@@ -222,15 +185,15 @@ namespace test_DataBase
             dataGridView1.Columns.Add("ID_Приёма", "ID");
             this.dataGridView1.Columns["ID_Приёма"].Visible = false;
             dataGridView1.Columns.Add("ФИО", "Фио пациента");
-          
+
             dataGridView1.Columns.Add("Дата_Посещения", "Дата посещения");
-       
+
             dataGridView1.Columns.Add("Цель_Посещения", "Цель посещения");
-      
+
             dataGridView1.Columns.Add("ФИО", "Фио врача");
-           
+
             dataGridView1.Columns.Add("Специальность", "Врач");
-            
+
         }
 
 
@@ -241,8 +204,6 @@ namespace test_DataBase
 
         }
 
-
-
         private void RefreshDataGrid(DataGridView dgw)
         {
 
@@ -250,7 +211,7 @@ namespace test_DataBase
 
 
 
-            string queryString = $"select [ID_Приёма], Фамилия, Имя, Отчество, [Дата_Посещения], [Цель_Посещения], ФИО,Специальность from Запись_Прием inner join Пациент on Пациент.[ID_Пациента] = Запись_Прием.[ID_Пациента] inner join Врач on Врач.[ID_Врача] = Запись_Прием.[ID_Врача] where Пациент.[ID_Пациента] = '{CurrentId}'";
+            string queryString = $"select [ID_Приёма], Фамилия, Имя, Отчество, [Дата_Посещения], [Цель_Посещения], ФИО,Специальность from Запись_Прием inner join Пациент on Пациент.[ID_Пациента] = Запись_Прием.[ID_Пациента] inner join Врач on Врач.[ID_Врача] = Запись_Прием.[ID_Врача] where Пациент.[ID_Пациента] = '{Currentid}'";
             SqlCommand command = new SqlCommand(queryString, DataBase.getConnection());
             DataBase.openConnection();
 
@@ -269,15 +230,15 @@ namespace test_DataBase
 
         private void deleteRow()
         {
-            
+
             var id = CellIdClient();
 
-            if(id < 0)
+            if (id < 0)
             {
 
                 return;
             }
-      
+
             var deleteQuery = $"delete from Запись_Прием where [ID_Приёма] = '{id}'";
 
             var command = new SqlCommand(deleteQuery, DataBase.getConnection());
@@ -285,7 +246,7 @@ namespace test_DataBase
 
         }
 
-       
+
 
         private bool? checkAppointment()
         {
@@ -293,13 +254,13 @@ namespace test_DataBase
             if (doctor == -1)
             {
 
-               
+
                 return null;
             }
             var date = dateTimePicker1.Value.ToString("yyyyMMdd") + " " + comboBox2.Text;
-          
+
             var doctorId = savedDoctorIDs[doctor];
-            string querystring = $"select Дата_Посещения,ID_Пациента, ID_Врача from Запись_Прием where DATEDIFF(hour, Дата_Посещения, '{date}') < 12 and ID_Пациента = '{CurrentId}' and ID_Врача = '{doctorId}' ";
+            string querystring = $"select Дата_Посещения,ID_Пациента, ID_Врача from Запись_Прием where DATEDIFF(hour, Дата_Посещения, '{date}') < 12 and ID_Пациента = '{Currentid}' and ID_Врача = '{doctorId}' ";
             SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
             DataBase.openConnection();
             command.ExecuteNonQuery();
@@ -308,19 +269,19 @@ namespace test_DataBase
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                
+
 
 
                 while (reader.Read())
                 {
 
                     count++;
-                   
+
                     return false;
-                    
+
                 }
 
-                
+
 
 
 
@@ -354,9 +315,12 @@ namespace test_DataBase
                 {
 
                     count++;
-                    
+
 
                 }
+
+
+
 
 
             }
@@ -394,7 +358,7 @@ namespace test_DataBase
             var date = dateTimePicker1.Value;
             var weekday = date.DayOfWeek;
 
-            switch (weekday) 
+            switch (weekday)
             {
                 case DayOfWeek.Monday:
                     return "Понедельник";
@@ -408,17 +372,17 @@ namespace test_DataBase
                     return "Пятница";
                 case DayOfWeek.Saturday:
                     return "Суббота";
-                default: 
+                default:
                     return "Воскресенье";
             }
-           
+
         }
 
 
-        
-        private void comboBox() 
+
+        private void comboBox()
         {
-            comboBox2.Items.Clear();    
+            comboBox2.Items.Clear();
             var doctor = comboBox1.SelectedIndex;
             if (doctor == -1)
             {
@@ -443,7 +407,7 @@ namespace test_DataBase
 
                     var date = reader.GetDateTime(0);
                     timelist.Add((DateTime)date);
-                   
+
 
 
                 }
@@ -460,7 +424,7 @@ namespace test_DataBase
 
             }
 
-            if(timelist.Count > 0)
+            if (timelist.Count > 0)
             {
 
                 comboBox2.DropDownHeight = 300;
@@ -468,128 +432,25 @@ namespace test_DataBase
             else
                 comboBox2.DropDownHeight = 1;
 
-
-
-        }
-        List<DateTime> savedDates = new List<DateTime>();
-        private void label3_Click(object sender, EventArgs e)
-        {
+           
 
         }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NW_Load(object sender, EventArgs e)
-        {
-            createColumns();
-            RefreshDataGrid(dataGridView1);
-            dataGridView1.ReadOnly = true;
-            aimtextBox1.MaxLength = 50;
-            comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-
-
-        }
-
-        private void CosttextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+            List<DateTime> savedDates = new List<DateTime>();
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
             RefreshDataGrid(dataGridView1);
-
-        }
-
-       
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Вы уверенны, что хотите удалить запись?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                deleteRow();
-                MessageBox.Show("Запись успешно удалена", "Успешно!");
-                RefreshDataGrid(dataGridView1); 
-            }
-            return;
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void врачBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-           Doctors ds = new Doctors();
-            ds.ShowDialog();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            
-            this.Close();
-            log_in login = new log_in();
-            login.Close();
-            
-        }
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            
-            this.Hide();
-        }
-
-        private void aimtextBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            comboBox2.DropDownHeight = 1;    
+           
             comboBox();
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            var doctor = comboBox1.SelectedIndex;
-            if (doctor == -1)
-            {
-                MessageBox.Show("Выберите врача", "Ошибка!");
-                return;
-            }
+            deleteRow();
         }
     }
 }
