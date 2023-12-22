@@ -126,9 +126,9 @@
             this.label4.Location = new System.Drawing.Point(13, 175);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(179, 17);
+            this.label4.Size = new System.Drawing.Size(172, 17);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Время начала рабочего дня";
+            this.label4.Text = "Время конца рабочего дня";
             // 
             // button2
             // 

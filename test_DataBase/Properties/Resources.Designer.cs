@@ -79,5 +79,16 @@ namespace test_DataBase.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap import_files_d5_d5aaeefc50d811eca798d8cb8ae56bae_6c1e3dc9a9ee11eda7b6d8cb8ae56bae {
+            get {
+                object obj = ResourceManager.GetObject("import_files_d5_d5aaeefc50d811eca798d8cb8ae56bae_6c1e3dc9a9ee11eda7b6d8cb8ae56bae" +
+                        "", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

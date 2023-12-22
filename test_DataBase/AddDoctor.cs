@@ -26,7 +26,7 @@ namespace test_DataBase
         {
             logintextBox2.MaxLength = 20;
             PasswordtextBox1.MaxLength = 20;
-            name_TextBox.MaxLength = 20;
+          
      
             Cost_TextBox2.MaxLength = 4;
             doctorComboBox();

@@ -19,17 +19,33 @@ namespace test_DataBase
         {
             CurrentClientID = ID;   
             InitializeComponent();
+        
+        
+        
+        }
+        private void addUserControl(UserControl userControl)
+        {
+            userControl.Dock = DockStyle.Fill;  
+            panel2.Controls.Clear();
+            panel2.Controls.Add(userControl);
+            userControl.BringToFront();
         }
 
         private void Client_acc_Load(object sender, EventArgs e)
         {
             label123();
+            
+
+            MainMenu_UserControl mainMenu = new MainMenu_UserControl(CurrentClientID);
+            addUserControl(mainMenu);
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            NW nw = new NW(CurrentClientID);
-            nw.ShowDialog();    
+            NW_UserControl userControl = new NW_UserControl(CurrentClientID);
+             addUserControl(userControl);
+            label1.Text = "Запись на прием";
         }
 
         private void label123()
@@ -54,11 +70,14 @@ namespace test_DataBase
 
 
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
-            Doctors ds = new Doctors(); 
-            ds.Show();    
+            Doctors_UserControl userControl = new Doctors_UserControl();
+            addUserControl(userControl);
+            label1.Text = "О врачах";
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -75,8 +94,25 @@ namespace test_DataBase
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DatesALL ds = new DatesALL();
-            ds.Show();
+            label1.Text = "Расписание врачей";
+            DatesAll_UserControl userControl = new DatesAll_UserControl();
+            addUserControl(userControl);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int ID = CurrentClientID;
+
+            MedCard_UserControl ms = new MedCard_UserControl(ID);
+            addUserControl(ms);
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+          
+        }
+    
+    
+    
     }
 }

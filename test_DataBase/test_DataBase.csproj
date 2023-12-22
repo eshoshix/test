@@ -62,6 +62,36 @@
     <Compile Include="AboutDoctor.Designer.cs">
       <DependentUpon>AboutDoctor.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\MainMenu_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\MainMenu_UserControl.Designer.cs">
+      <DependentUpon>MainMenu_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\MedCard_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\MedCard_UserControl.Designer.cs">
+      <DependentUpon>MedCard_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\DatesAll_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\DatesAll_UserControl.Designer.cs">
+      <DependentUpon>DatesAll_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Dates_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\Dates_UserControl.Designer.cs">
+      <DependentUpon>Dates_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\AboutDoctor_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\AboutDoctor_UserControl.Designer.cs">
+      <DependentUpon>AboutDoctor_UserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddDoctor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +139,12 @@
     </Compile>
     <Compile Include="Doctors.Designer.cs">
       <DependentUpon>Doctors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\Doctors_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\Doctors_UserControl.Designer.cs">
+      <DependentUpon>Doctors_UserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="EditDoctorsAcc.cs">
       <SubType>Form</SubType>
@@ -160,6 +196,12 @@
     <Compile Include="timetable.Designer.cs">
       <DependentUpon>timetable.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\NW_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\NW_UserControl.Designer.cs">
+      <DependentUpon>NW_UserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +216,21 @@
     </Compile>
     <EmbeddedResource Include="AboutDoctor.resx">
       <DependentUpon>AboutDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\MainMenu_UserControl.resx">
+      <DependentUpon>MainMenu_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\MedCard_UserControl.resx">
+      <DependentUpon>MedCard_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\DatesAll_UserControl.resx">
+      <DependentUpon>DatesAll_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\Dates_UserControl.resx">
+      <DependentUpon>Dates_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\AboutDoctor_UserControl.resx">
+      <DependentUpon>AboutDoctor_UserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddDoctor.resx">
       <DependentUpon>AddDoctor.cs</DependentUpon>
@@ -230,6 +287,12 @@
     <EmbeddedResource Include="timetable.resx">
       <DependentUpon>timetable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\Doctors_UserControl.resx">
+      <DependentUpon>Doctors_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\NW_UserControl.resx">
+      <DependentUpon>NW_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visit.resx">
       <DependentUpon>Visit.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\import_files_d5_d5aaeefc50d811eca798d8cb8ae56bae_6c1e3dc9a9ee11eda7b6d8cb8ae56bae.png" />
     <None Include="Resources\1.png" />
     <None Include="Resources\_-__1.png" />
   </ItemGroup>
