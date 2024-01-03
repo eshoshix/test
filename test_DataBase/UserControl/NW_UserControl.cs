@@ -3,50 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using test_DataBase.Properties;
-using static MetroFramework.Drawing.MetroPaint.BorderColor;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 
 namespace test_DataBase
 {
-
-
-    enum RowState
+    public partial class NW_UserControl : UserControl
     {
-        Existed,
-        New,
-        Modified,
-        ModifiedNew,
-        Deleted
-    }
-
-    public partial class NW : MetroFramework.Forms.MetroForm
-    {
-
         DataBase DataBase = new DataBase();
-
         int CurrentId;
-        public NW(int id)
+        public NW_UserControl(int id)
         {
             CurrentId = id;
-            StartPosition = FormStartPosition.CenterScreen;
-
-            
             InitializeComponent();
+        }
 
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
             label123();
 
-            CosttextBox1.ReadOnly = true;
+
         }
 
         private void label123()
@@ -55,12 +34,12 @@ namespace test_DataBase
             SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
             DataBase.openConnection();
 
-            using(SqlDataReader reader = command.ExecuteReader())
+            using (SqlDataReader reader = command.ExecuteReader())
             {
                 reader.Read();
 
                 string column1Data = reader["Фамилия"].ToString();
-                
+
                 string column2Data = reader["Имя"].ToString();
 
                 string column3Data = reader["Отчество"].ToString();
@@ -73,7 +52,7 @@ namespace test_DataBase
 
         private void ComboBoxSpec()
         {
-       
+
 
             string querystring2 = $"select distinct Специальность from Врач";
             SqlCommand command2 = new SqlCommand(querystring2, DataBase.getConnection());
@@ -81,7 +60,7 @@ namespace test_DataBase
 
 
             List<string> listSpec = new List<string>();
-          
+
 
 
             using (SqlDataReader reader = command2.ExecuteReader())
@@ -89,7 +68,7 @@ namespace test_DataBase
 
                 while (reader.Read())
                 {
-                   
+
                     var doctorSpec1 = reader.GetString(0);
                     listSpec.Add((string)doctorSpec1);
 
@@ -105,10 +84,10 @@ namespace test_DataBase
 
             }
 
-   
+
         }
 
-    
+
 
 
 
@@ -123,8 +102,8 @@ namespace test_DataBase
             }
             if (checkDayAppointment() == false)
             {
-                    MessageBox.Show("Можно сделать только одну запись раз в 12 часов!", "Ошибка!");
-                    return;
+                MessageBox.Show("Можно сделать только одну запись раз в 12 часов!", "Ошибка!");
+                return;
 
             }
 
@@ -136,7 +115,7 @@ namespace test_DataBase
                 return;
 
             }
-          
+
 
             if (checkTime() == false)
             {
@@ -144,22 +123,22 @@ namespace test_DataBase
                 return;
 
             }
-            
-            
-            
-            
+
+
+
+
             var date = dateTimePicker1.Value.ToString("yyyyMMdd") + " " + comboBox2.Text;
 
-           
+
             var doctorId = savedDoctorIDs2[doctor];
             string querystring3 = $"select [Стоимость посещения] from Врач where [ID_Врача] = '{doctorId}'";
             SqlCommand command3 = new SqlCommand(querystring3, DataBase.getConnection());
             DataBase.openConnection();
 
-           
 
-          
-            var aim = aimtextBox1.Text;
+
+
+            var aim = richTextBox1.Text;
             string querystring = $"Insert into Запись_Прием ([ID_Врача],[ID_Пациента], [Дата_Посещения], [Цель_Посещения]) values('{doctorId}','{CurrentId}','{date}', '{aim}')";
             SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
             DataBase.openConnection();
@@ -167,9 +146,9 @@ namespace test_DataBase
             command.ExecuteNonQuery();
 
             RefreshDataGrid(dataGridView1);
-           
-            aimtextBox1.Clear();
-            MessageBox.Show("Вы успешно записаны на прием","Успех!");
+
+            richTextBox1.Clear();
+            MessageBox.Show("Вы успешно записаны на прием", "Успех!");
 
 
 
@@ -196,15 +175,15 @@ namespace test_DataBase
             dataGridView1.Columns.Add("ID_Приёма", "ID");
             this.dataGridView1.Columns["ID_Приёма"].Visible = false;
             dataGridView1.Columns.Add("ФИО", "Фио пациента");
-          
+
             dataGridView1.Columns.Add("Дата_Посещения", "Дата посещения");
-       
+
             dataGridView1.Columns.Add("Цель_Посещения", "Цель посещения");
-      
+
             dataGridView1.Columns.Add("ФИО", "Фио врача");
-           
+
             dataGridView1.Columns.Add("Специальность", "Врач");
-            
+
         }
 
 
@@ -243,15 +222,15 @@ namespace test_DataBase
 
         private void deleteRow()
         {
-            
+
             var id = CellIdClient();
 
-            if(id < 0)
+            if (id < 0)
             {
 
                 return;
             }
-      
+
             var deleteQuery = $"delete from Запись_Прием where [ID_Приёма] = '{id}'";
 
             var command = new SqlCommand(deleteQuery, DataBase.getConnection());
@@ -259,7 +238,7 @@ namespace test_DataBase
 
         }
 
-       
+
 
         private bool? checkDayAppointment()
         {
@@ -267,11 +246,11 @@ namespace test_DataBase
             if (doctor == -1)
             {
 
-               
+
                 return null;
             }
             var date = dateTimePicker1.Value.ToString("yyyyMMdd") + " " + comboBox2.Text;
-          
+
             var doctorId = savedDoctorIDs2[doctor];
             string querystring = $"select Дата_Посещения,ID_Пациента, ID_Врача from Запись_Прием where DATEDIFF(hour, Дата_Посещения, '{date}') < 12 and ID_Пациента = '{CurrentId}' and ID_Врача = '{doctorId}' ";
             SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
@@ -282,20 +261,20 @@ namespace test_DataBase
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                
+
 
 
                 while (reader.Read())
                 {
                     count++;
-                    
-                    
-                   
+
+
+
                     return false;
-                    
+
                 }
 
-                
+
 
 
 
@@ -329,7 +308,7 @@ namespace test_DataBase
                 {
 
                     count++;
-                    
+
 
                 }
 
@@ -356,25 +335,25 @@ namespace test_DataBase
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                
+
                 while (reader.Read())
                 {
 
                     count++;
-               
+
                     return false;
 
                 }
             }
             return count == 0;
         }
-        
+
         private string day()
         {
             var date = dateTimePicker1.Value;
             var weekday = date.DayOfWeek;
 
-            switch (weekday) 
+            switch (weekday)
             {
                 case DayOfWeek.Monday:
                     return "Понедельник";
@@ -388,17 +367,17 @@ namespace test_DataBase
                     return "Пятница";
                 case DayOfWeek.Saturday:
                     return "Суббота";
-                default: 
+                default:
                     return "Воскресенье";
             }
-           
+
         }
 
 
-        
-        private void comboBoxTime() 
+
+        private void comboBoxTime()
         {
-            comboBox2.Items.Clear();    
+            comboBox2.Items.Clear();
             var doctor = comboBox3.SelectedIndex;
             if (doctor == -1)
             {
@@ -423,7 +402,7 @@ namespace test_DataBase
 
                     var date = reader.GetDateTime(0);
                     timelist.Add((DateTime)date);
-                   
+
 
 
                 }
@@ -440,7 +419,7 @@ namespace test_DataBase
 
             }
 
-            if(timelist.Count > 0)
+            if (timelist.Count > 0)
             {
 
                 comboBox2.DropDownHeight = 300;
@@ -468,37 +447,13 @@ namespace test_DataBase
             createColumns();
             RefreshDataGrid(dataGridView1);
             dataGridView1.ReadOnly = true;
-            aimtextBox1.MaxLength = 50;
+            richTextBox1.MaxLength = 312;
             comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 
 
         }
 
-        private void CosttextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -507,7 +462,7 @@ namespace test_DataBase
 
         }
 
-       
+
 
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -515,7 +470,7 @@ namespace test_DataBase
             {
                 deleteRow();
                 MessageBox.Show("Запись успешно удалена", "Успешно!");
-                RefreshDataGrid(dataGridView1); 
+                RefreshDataGrid(dataGridView1);
             }
             return;
 
@@ -523,7 +478,7 @@ namespace test_DataBase
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void врачBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -533,26 +488,26 @@ namespace test_DataBase
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-           Doctors ds = new Doctors();
+            Doctors ds = new Doctors();
             ds.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
-            this.Close();
+
+           
             log_in login = new log_in();
             login.Close();
-            
+
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            
+
             this.Hide();
         }
 
-      
+
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -574,7 +529,7 @@ namespace test_DataBase
         {
 
             var doctorSpec = comboBox1.Text;
-           
+
             string querystring2 = $"select ID_Врача, ФИО from Врач where Специальность = '{doctorSpec}'";
             SqlCommand command2 = new SqlCommand(querystring2, DataBase.getConnection());
             DataBase.openConnection();
@@ -582,7 +537,7 @@ namespace test_DataBase
 
             List<string> listName = new List<string>();
             List<int> listID = new List<int>();
-           
+
 
             using (SqlDataReader reader = command2.ExecuteReader())
             {
@@ -593,13 +548,13 @@ namespace test_DataBase
                     listID.Add(IDDoctor);
                     var doctorname = reader.GetString(1);
                     listName.Add((string)doctorname);
-                    
+
                 }
 
 
             }
 
-           
+
             savedDoctorIDs2 = listID;
 
 
@@ -611,10 +566,10 @@ namespace test_DataBase
             }
 
         }
-      
-       
+
+
         List<int> savedDoctorIDs2 = new List<int>();
-        
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -629,7 +584,7 @@ namespace test_DataBase
         private void Cost()
         {
             var doctor = comboBox3.SelectedIndex;
-           
+
             var doctorID = savedDoctorIDs2[doctor];
 
             string querystring2 = $"select [Стоимость посещения] from Врач where ID_Врача = '{doctorID}'";
@@ -637,8 +592,8 @@ namespace test_DataBase
             DataBase.openConnection();
             using (SqlDataReader reader = command2.ExecuteReader())
             {
-                 reader.Read(); 
-                object column1Data = reader["Стоимость посещения"]; 
+                reader.Read();
+                object column1Data = reader["Стоимость посещения"];
                 decimal cost = Convert.ToInt32(column1Data);
                 Math.Round(cost, 2).ToString();
                 CosttextBox1.Text = $"{cost}" + " Руб.";
@@ -653,5 +608,23 @@ namespace test_DataBase
             comboBoxTime();
 
         }
+
+        private void label5_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
+
+
 }
+

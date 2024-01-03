@@ -8,26 +8,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static MetroFramework.Drawing.MetroPaint.BorderColor;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace test_DataBase
 {
-    public partial class DatesALL : MetroFramework.Forms.MetroForm
+    public partial class DatesAll_UserControl : UserControl
     {
-
         DataBase DataBase = new DataBase();
-        public DatesALL()
+        public DatesAll_UserControl()
         {
             InitializeComponent();
         }
 
-        private void DatesALL_Load(object sender, EventArgs e)
+        private void DatesAllUserControl_Load(object sender, EventArgs e)
         {
-            
             createColumns();
             comboBoxSpec();
             DaysComboBox();
+            RefreshDataGrid1(dataGridView1);
 
 
         }
@@ -111,14 +108,14 @@ namespace test_DataBase
         }
         List<int> savedDoctorIDs2 = new List<int>();
 
-        
+
 
 
 
 
         private void name()
         {
-          
+
             var doctor = comboBox1.SelectedIndex;
             if (doctor == -1)
             {
@@ -130,7 +127,7 @@ namespace test_DataBase
             SqlCommand command = new SqlCommand(queryString, DataBase.getConnection());
             DataBase.openConnection();
 
-            
+
 
         }
         private void createColumns()
@@ -146,7 +143,7 @@ namespace test_DataBase
             dataGridView1.Columns.Add("Время_Начала_Работы", "Начало работы");
             dataGridView1.Columns[6].DefaultCellStyle.Format = "HH:mm";
             dataGridView1.Columns.Add("Время_Конца_Работы", "Конец работы");
-            dataGridView1.Columns[7].DefaultCellStyle.Format = "HH:mm"; 
+            dataGridView1.Columns[7].DefaultCellStyle.Format = "HH:mm";
             dataGridView1.Columns.Add("Время_Приема", "Время приема");
             dataGridView1.Columns[8].DefaultCellStyle.Format = "HH:mm";
 
@@ -162,14 +159,39 @@ namespace test_DataBase
         }
 
 
-        private void RefreshDataGrid(DataGridView dgw)
+        private void RefreshDataGrid1(DataGridView dgw)
         {
 
             dgw.Rows.Clear();
 
-            
+
             var doctorSpec = comboBox1.Text;
-           
+
+            string queryString = $"select [ID_Расписания], Расписание.ID_Врача, ФИО, Специальность, [Стоимость посещения], День_Недели,Время_Начала_Работы,Время_Конца_Работы,Время_Приема from Расписание inner join Врач on Врач.[ID_Врача] = Расписание.[ID_Врача] ";
+
+            SqlCommand command = new SqlCommand(queryString, DataBase.getConnection());
+            DataBase.openConnection();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+
+                ReadSingleRow(dgw, reader);
+
+
+            }
+            reader.Close();
+
+        }
+        private void RefreshDataGrid11(DataGridView dgw)
+        {
+
+            dgw.Rows.Clear();
+
+
+            var doctorSpec = comboBox1.Text;
+
             string queryString = $"select [ID_Расписания], Расписание.ID_Врача, ФИО, Специальность, [Стоимость посещения], День_Недели,Время_Начала_Работы,Время_Конца_Работы,Время_Приема from Расписание inner join Врач on Врач.[ID_Врача] = Расписание.[ID_Врача] where Специальность = '{doctorSpec}' ";
 
             SqlCommand command = new SqlCommand(queryString, DataBase.getConnection());
@@ -207,7 +229,7 @@ namespace test_DataBase
         }
 
 
-        
+
 
         private void RefreshDataGrid2(DataGridView dgw)
         {
@@ -246,9 +268,9 @@ namespace test_DataBase
             if (doctor == -1)
             {
                 return;
-            } 
+            }
             var doctorId = savedDoctorIDs2[doctor];
-            
+
 
             var day = comboBox3.Text.ToString();
             string queryString = $"select [ID_Расписания], Расписание.ID_Врача, ФИО, Специальность, [Стоимость посещения], День_Недели,Время_Начала_Работы,Время_Конца_Работы,Время_Приема from Расписание inner join Врач on Врач.[ID_Врача] = Расписание.[ID_Врача] where Расписание.ID_Врача = '{doctorId}' and День_Недели = '{day}' ";
@@ -273,7 +295,7 @@ namespace test_DataBase
 
             if (comboBox1.Text == "")
             {
-                RefreshDataGrid(dataGridView1);
+                RefreshDataGrid11(dataGridView1);
 
             }
             RefreshDataGrid2(dataGridView1);
@@ -284,31 +306,87 @@ namespace test_DataBase
         private void button1_Click(object sender, EventArgs e)
         {
             comboBox1.Text = null;
-            RefreshDataGrid(dataGridView1);
+            RefreshDataGrid11(dataGridView1);
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
-            comboBox2.Text = null;  
-            comboBox3.Text = null;  
+            comboBox2.Text = null;
+            comboBox3.Text = null;
             comboBox2Fill();
-            RefreshDataGrid(dataGridView1);
-           
+            RefreshDataGrid11(dataGridView1);
+
         }
 
-      
+
 
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+           
+            
+            
             RefreshDataGrid2(dataGridView1);
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             RefreshDataGrid3(dataGridView1);
+
+
         }
 
-       
+
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_TextChanged(object sender, EventArgs e)
+        {
+
+            if (comboBox3.SelectedText == "")
+            {
+                
+                
+
+
+
+                RefreshDataGrid2(dataGridView1);
+            }
+        }
+
+        private void comboBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedText == "")
+            {
+
+
+
+
+
+                RefreshDataGrid11(dataGridView1);
+            }
+        }
+
+        
+        
+
+        private void comboBox1_TextChanged(object sender, EventArgs e)
+        {
+          
+
+            if (comboBox1.SelectedText == null)
+            {
+                comboBox2.Items.Clear ();   
+
+
+
+
+                RefreshDataGrid1(dataGridView1);
+            }
+        }
     }
 }

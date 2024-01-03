@@ -57,6 +57,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(192, 76);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(162, 20);
             this.textBox1.TabIndex = 2;
             // 
@@ -64,6 +65,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(192, 115);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(162, 20);
             this.textBox2.TabIndex = 3;
             // 
@@ -71,6 +73,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(192, 154);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(162, 20);
             this.textBox3.TabIndex = 4;
             // 
@@ -78,6 +81,7 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(192, 193);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(162, 20);
             this.textBox4.TabIndex = 5;
             // 
@@ -85,6 +89,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(23, 258);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(331, 105);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "";
@@ -140,6 +145,7 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(192, 232);
             this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(162, 20);
             this.textBox5.TabIndex = 11;
             // 

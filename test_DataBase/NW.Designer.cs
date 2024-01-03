@@ -46,6 +46,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.врачBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
@@ -58,7 +59,7 @@
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             label4.ForeColor = System.Drawing.SystemColors.Highlight;
-            label4.Location = new System.Drawing.Point(19, 221);
+            label4.Location = new System.Drawing.Point(19, 258);
             label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(130, 17);
@@ -91,7 +92,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "MMMMdd, yyyy ";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(22, 186);
+            this.dateTimePicker1.Location = new System.Drawing.Point(22, 223);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(173, 25);
@@ -109,14 +110,13 @@
             this.label1.Size = new System.Drawing.Size(106, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Выберите врача";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label2.Location = new System.Drawing.Point(19, 165);
+            this.label2.Location = new System.Drawing.Point(19, 202);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(166, 17);
@@ -128,7 +128,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.button1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button1.Location = new System.Drawing.Point(22, 283);
+            this.button1.Location = new System.Drawing.Point(22, 320);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(233, 71);
@@ -143,18 +143,17 @@
             // 
             // aimtextBox1
             // 
-            this.aimtextBox1.Location = new System.Drawing.Point(22, 242);
+            this.aimtextBox1.Location = new System.Drawing.Point(22, 279);
             this.aimtextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.aimtextBox1.Multiline = true;
             this.aimtextBox1.Name = "aimtextBox1";
             this.aimtextBox1.Size = new System.Drawing.Size(233, 35);
             this.aimtextBox1.TabIndex = 6;
-            this.aimtextBox1.TextChanged += new System.EventHandler(this.aimtextBox1_TextChanged);
             // 
             // CosttextBox1
             // 
             this.CosttextBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.CosttextBox1.Location = new System.Drawing.Point(22, 136);
+            this.CosttextBox1.Location = new System.Drawing.Point(22, 173);
             this.CosttextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.CosttextBox1.Multiline = true;
             this.CosttextBox1.Name = "CosttextBox1";
@@ -167,7 +166,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label5.Location = new System.Drawing.Point(19, 115);
+            this.label5.Location = new System.Drawing.Point(19, 152);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 17);
@@ -182,7 +181,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.Location = new System.Drawing.Point(264, 82);
+            this.dataGridView1.Location = new System.Drawing.Point(264, 119);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(538, 272);
@@ -191,7 +190,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(264, 47);
+            this.button2.Location = new System.Drawing.Point(274, 82);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(119, 30);
@@ -204,7 +203,7 @@
             // 
             this.comboBox2.FormatString = "t";
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(202, 186);
+            this.comboBox2.Location = new System.Drawing.Point(202, 223);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(55, 25);
             this.comboBox2.TabIndex = 16;
@@ -223,11 +222,21 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(22, 124);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(233, 25);
+            this.comboBox3.TabIndex = 17;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
             // NW
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(820, 371);
+            this.ClientSize = new System.Drawing.Size(820, 421);
+            this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox1);
@@ -275,5 +284,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }

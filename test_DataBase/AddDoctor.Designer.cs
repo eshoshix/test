@@ -36,10 +36,10 @@
             this.PasswordtextBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.logintextBox2 = new System.Windows.Forms.TextBox();
-            this.speciality_TextBox2 = new System.Windows.Forms.TextBox();
             this.Cost_TextBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label3
@@ -122,17 +122,6 @@
             this.logintextBox2.TabIndex = 41;
             this.logintextBox2.TextChanged += new System.EventHandler(this.logintextBox2_TextChanged);
             // 
-            // speciality_TextBox2
-            // 
-            this.speciality_TextBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.speciality_TextBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.speciality_TextBox2.Location = new System.Drawing.Point(40, 267);
-            this.speciality_TextBox2.Margin = new System.Windows.Forms.Padding(20);
-            this.speciality_TextBox2.Multiline = true;
-            this.speciality_TextBox2.Name = "speciality_TextBox2";
-            this.speciality_TextBox2.Size = new System.Drawing.Size(232, 30);
-            this.speciality_TextBox2.TabIndex = 30;
-            // 
             // Cost_TextBox2
             // 
             this.Cost_TextBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -167,17 +156,26 @@
             this.label4.TabIndex = 42;
             this.label4.Text = "Введите логин";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(39, 278);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(233, 21);
+            this.comboBox1.TabIndex = 44;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // AddDoctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(319, 457);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.logintextBox2);
             this.Controls.Add(this.Cost_TextBox2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.speciality_TextBox2);
             this.Controls.Add(this.name_TextBox);
             this.Controls.Add(this.reg_button);
             this.Controls.Add(this.label1);
@@ -201,9 +199,9 @@
         private System.Windows.Forms.TextBox PasswordtextBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox logintextBox2;
-        private System.Windows.Forms.TextBox speciality_TextBox2;
         private System.Windows.Forms.TextBox Cost_TextBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

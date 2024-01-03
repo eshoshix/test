@@ -26,35 +26,15 @@ namespace test_DataBase
         {
             logintextBox2.MaxLength = 20;
             PasswordtextBox1.MaxLength = 20;
-            name_TextBox.MaxLength = 20;
-            speciality_TextBox2.MaxLength = 20;
+          
+     
             Cost_TextBox2.MaxLength = 4;
-            
+            doctorComboBox();
 
 
         }
       
-        private int newDoctor()
-        {
-            
-            String querystring2 = $"SELECT IDENT_CURRENT('Врач')";
-
-            var connection = DataBase.getConnection();
-          
-            connection.Open();
-
-            SqlCommand command2 = new SqlCommand(querystring2, connection);
-
-            var reader = command2.ExecuteReader();
-            reader.Read();
-
-            var id = (int)(reader.GetDecimal(0));
-            reader.Close();
-
-            connection.Close();
-            return id;
-
-        }
+        
         private void reg_button_Click(object sender, EventArgs e)
         {
             var Login_user = logintextBox2.Text;
@@ -84,7 +64,7 @@ namespace test_DataBase
             }
             
 
-            var speciality = speciality_TextBox2.Text;
+            var speciality = comboBox1.Text;
             if (string.IsNullOrEmpty(speciality))
             {
                 MessageBox.Show("Введите специальность!", "Ошибка!");
@@ -139,7 +119,41 @@ namespace test_DataBase
         
 
         }
+       
+        private void doctorComboBox()
+        {
 
+            string querystring2 = $"select distinct Специальность from Врач";
+            SqlCommand command2 = new SqlCommand(querystring2, DataBase.getConnection());
+            DataBase.openConnection();
+
+
+            List<string> listSpec = new List<string>();
+
+
+
+            using (SqlDataReader reader = command2.ExecuteReader())
+            {
+
+                while (reader.Read())
+                {
+
+                    var doctorSpec1 = reader.GetString(0);
+                    listSpec.Add((string)doctorSpec1);
+
+                }
+
+
+            }
+
+            foreach (var item in listSpec)
+            {
+
+                comboBox1.Items.Add(item);
+
+            }
+
+        }
         private void label5_Click(object sender, EventArgs e)
         {
 
@@ -169,6 +183,11 @@ namespace test_DataBase
         {
               
             
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

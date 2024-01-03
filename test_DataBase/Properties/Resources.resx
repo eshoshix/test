@@ -124,4 +124,7 @@
   <data name="1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="import_files_d5_d5aaeefc50d811eca798d8cb8ae56bae_6c1e3dc9a9ee11eda7b6d8cb8ae56bae" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\import_files_d5_d5aaeefc50d811eca798d8cb8ae56bae_6c1e3dc9a9ee11eda7b6d8cb8ae56bae.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

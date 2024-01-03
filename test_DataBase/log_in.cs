@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Threading;
 
 
 namespace test_DataBase
@@ -17,14 +18,27 @@ namespace test_DataBase
     {
 
         DataBase DataBase = new DataBase();
+        public void Icon2()
+        {
+            Application.Run(new Icon());
+        }
         public log_in()
         {
+          
+
+            
+            Thread t = new Thread(new ThreadStart(Icon2));
+            t.Start();
+            Thread.Sleep(500);
+            t.Abort();
+            
             InitializeComponent();
 
+
             StartPosition = FormStartPosition.CenterScreen;
-
         }
-
+       
+       
         private void log_in_Load(object sender, EventArgs e)
         {
             Password_TextBox.PasswordChar = '*';
