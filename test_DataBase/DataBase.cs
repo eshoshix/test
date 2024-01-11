@@ -13,7 +13,7 @@ namespace test_DataBase
      class DataBase
      {
 
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=EXPC; Initial Catalog=EbaTest2; Integrated Security=True");
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=exPC; Initial Catalog=EbaTest2; Integrated Security=True");
 
 
         public void openConnection()

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,33 +12,26 @@ using System.Windows.Forms;
 
 namespace test_DataBase
 {
-    public partial class MainMenu_UserControl : UserControl
+    public partial class LastAppointment_UserControl : UserControl
     {
         DataBase DataBase = new DataBase();
-
         int CurrentClient;
-        public MainMenu_UserControl(int CurrentClientID)
+        public LastAppointment_UserControl(int ID)
         {
-            CurrentClient = CurrentClientID;
+            CurrentClient = ID;
             InitializeComponent();
         }
 
-        private void MainMenu_UserControl_Load(object sender, EventArgs e)
+        private void LastAppointment_UserControl_Load(object sender, EventArgs e)
         {
-
             createColumns();
             RefreshDataGrid(dataGridView1);
             DaysComboBox();
-            timer1.Start();
             dataGridView1.ClearSelection();
 
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
         private void createColumns()
         {
             dataGridView1.Columns.Add("ID_СостПриема", "ID");
@@ -52,10 +46,10 @@ namespace test_DataBase
 
         private void ReadSingleRow(DataGridView dgw, IDataRecord record)
         {
-            
+
             dgw.Rows.Add(record.GetInt32(0), record.GetInt32(1), record.GetString(2), record.GetString(3), record.GetDateTime(4).ToString("dd.MM.yyyy"));
 
-         
+
 
         }
         private void RefreshDataGrid(DataGridView dgw)
@@ -80,11 +74,11 @@ namespace test_DataBase
 
         }
 
-        
 
-       
 
-        
+
+
+
         private int CellIdDoctor()
         {
             int id = 0;
@@ -105,28 +99,27 @@ namespace test_DataBase
         {
 
             var ID = CellIdDoctor();
-            if(ID == 0)
+            if (ID == 0)
             {
                 MessageBox.Show("Выберите прием, который хотите оценить", "Ошибка");
                 label5.ForeColor = Color.Red;
                 return;
-              
+
 
             }
             var mark = comboBox1.Text;
             if (mark == "")
             {
-                MessageBox.Show("Выберите оценку от 0 до 10","Ошибка");
+                MessageBox.Show("Выберите оценку от 0 до 10", "Ошибка");
                 label4.ForeColor = Color.Red;
                 return;
-
-
             }
             Convert.ToDecimal(mark);
             string queryString = $"update Состоявщийся_Прием set Оценка = {mark} where ID_СостПриема = '{ID}'";
             SqlCommand command = new SqlCommand(queryString, DataBase.getConnection());
             DataBase.openConnection();
-            command.ExecuteNonQuery();  
+            command.ExecuteNonQuery();
+            MessageBox.Show("Вы успешно оценили посещение на " + mark, "Успех");
 
         }
         private void DaysComboBox()
@@ -137,7 +130,6 @@ namespace test_DataBase
             foreach (var item in days)
             {
                 comboBox1.Items.Add(item);
-
             }
 
         }
@@ -148,15 +140,14 @@ namespace test_DataBase
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            label1.Text = DateTime.Now.ToString("HH:mm.ss");
-            label2.Text = DateTime.Now.ToString("dd.mm.yyyy");
-               
-
+            
         }
+
+       
 
         private void comboBox1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -164,9 +155,43 @@ namespace test_DataBase
             label5.ForeColor = Color.Black;
         }
 
+      
+
+       
+       
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+       
+
         private void panel1_Click(object sender, EventArgs e)
         {
             dataGridView1.ClearSelection();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

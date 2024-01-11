@@ -34,7 +34,7 @@ namespace test_DataBase
         private void Client_acc_Load(object sender, EventArgs e)
         {
             label123();
-            
+            label1.Text = "Главное меню";
 
             MainMenu_UserControl mainMenu = new MainMenu_UserControl(CurrentClientID);
             addUserControl(mainMenu);
@@ -62,7 +62,7 @@ namespace test_DataBase
                 string column2Data = reader["Имя"].ToString();
                 string column3Data = reader["Отчество"].ToString();
 
-                textBox1.Text =  $"{column1Data} {column2Data} {column3Data}";
+                label2.Text =  $"{column1Data} {column2Data} {column3Data}";
 
             }
 
@@ -87,7 +87,14 @@ namespace test_DataBase
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("Вы уверенны, что хотите выйти из аккаунта?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                this.Close();
+
+            }
+            return;
+          
 
           
         }
@@ -101,6 +108,7 @@ namespace test_DataBase
 
         private void button5_Click(object sender, EventArgs e)
         {
+            label1.Text = "Медицинская карта";
             int ID = CurrentClientID;
 
             MedCard_UserControl ms = new MedCard_UserControl(ID);
@@ -111,8 +119,24 @@ namespace test_DataBase
         {
           
         }
-    
-    
-    
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            label1.Text = "Главное меню";
+            int ID = CurrentClientID;
+            MainMenu_UserControl mm = new MainMenu_UserControl(ID);
+            addUserControl(mm);
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label3.Text = DateTime.Now.ToString("HH:mm.ss");
+            label4.Text = DateTime.Now.ToString("dd.MM.yyyy");
+        }
     }
 }
