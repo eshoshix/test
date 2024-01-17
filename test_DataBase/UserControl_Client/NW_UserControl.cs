@@ -5,9 +5,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace test_DataBase
 {
@@ -90,7 +92,7 @@ namespace test_DataBase
 
 
 
-
+  
         private void button1_Click(object sender, EventArgs e)
         {
             var doctor = comboBox3.SelectedIndex;
@@ -423,13 +425,16 @@ namespace test_DataBase
 
             savedDates = timelist;
 
-
+          
             foreach (var item in timelist)
             {
-
+                
                 comboBox2.Items.Add(item);
-
+               
+                
             }
+           
+            
 
             if (timelist.Count > 0)
             {
@@ -593,22 +598,60 @@ namespace test_DataBase
 
         }
 
-        private void Cost()
+        private int YO()
         {
-            var doctor = comboBox3.SelectedIndex;
-
-            var doctorID = savedDoctorIDs2[doctor];
-
-            string querystring2 = $"select [Стоимость посещения] from Врач where ID_Врача = '{doctorID}'";
+            int age = 0;
+            string querystring2 = $"Select Case when DATEADD(YEAR , DATEDIFF(YY, Дата_Рождения,GETDATE()), Дата_Рождения) > GETDATE() Then DateDiff(YY, (Дата_Рождения), GetDate()) - 1 else DateDiff(YY, (Дата_Рождения), GetDate()) end as Age from Пациент where ID_Пациента = '{CurrentId}'";
             SqlCommand command2 = new SqlCommand(querystring2, DataBase.getConnection());
             DataBase.openConnection();
             using (SqlDataReader reader = command2.ExecuteReader())
             {
                 reader.Read();
+
+                int column1Data = Convert.ToInt32(reader["Age"]);
+
+                age = column1Data;
+                
+
+
+            }
+            return age;
+
+        }
+        private void Cost()
+        {
+            var doctor = comboBox3.SelectedIndex;
+      
+            var doctorID = savedDoctorIDs2[doctor];
+            int age = YO();
+            string querystring2 = $"select [Стоимость посещения] from Врач where ID_Врача = '{doctorID}'";
+            SqlCommand command2 = new SqlCommand(querystring2, DataBase.getConnection());
+            DataBase.openConnection();
+            using (SqlDataReader reader = command2.ExecuteReader())
+            {
+
+                reader.Read();
                 object column1Data = reader["Стоимость посещения"];
-                decimal cost = Convert.ToInt32(column1Data);
+                double cost = Convert.ToInt32(column1Data);
                 Math.Round(cost, 2).ToString();
-                CosttextBox1.Text = $"{cost}" + " Руб.";
+                if (age > 60)
+                { 
+                    cost = cost - (cost * 0.25);
+                    CosttextBox1.Text = $"{cost}" + " Руб." + "(Скидка 25%)";
+                    costlable.Text = "(с учетом скидки для людей старше 60 лет)";
+                }
+                else if (age < 18)
+                {
+                    cost = cost - (cost * 0.15);
+                    CosttextBox1.Text = $"{cost}" + " Руб." + "(Скидка 15%)";
+                    costlable.Text = "(с учетом скидки для детей младше 18 лет)";
+                }
+                else
+                {
+                    CosttextBox1.Text = $"{cost}" + " Руб.";
+                }
+
+               
 
 
             }
@@ -632,6 +675,39 @@ namespace test_DataBase
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CosttextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void costlable_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolTip1.SetToolTip(costlable, "Нажмите чтобы узнать больше");
+        }
+
+        private void costlable_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Discount ad = new Discount();
+            ad.ShowDialog();    
+        }
+
+        private void comboBox2_Click(object sender, EventArgs e)
+        {
+
+            if(comboBox2.Items.Count < 1)
+            {
+                MessageBox.Show("Врач не работает в заданную дату","Ошибка!");
+                return;
+            }
+
+
+        }
+
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }

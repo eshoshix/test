@@ -162,6 +162,7 @@
             this.label2.Size = new System.Drawing.Size(227, 28);
             this.label2.TabIndex = 11;
             this.label2.Text = "Капица Илья Игоревич";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 

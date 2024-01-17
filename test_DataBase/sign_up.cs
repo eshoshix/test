@@ -61,7 +61,36 @@ namespace test_DataBase
             return id;
 
        }
+        private bool checkData()
+        {
 
+            var login = login_TextBox2.Text;
+
+            string querystring2 = $"select Login_user, password_user from Врач where Login_user = '{login}'";
+            SqlCommand command2 = new SqlCommand(querystring2, DataBase.getConnection());
+            DataBase.openConnection();
+            int count = 0;
+            using (SqlDataReader reader = command2.ExecuteReader())
+            {
+              
+
+                while (reader.Read())
+                {
+                    count++;
+
+
+                }
+
+
+            }
+            if(count> 0 )
+            {
+
+                return true;
+            }
+            return false;
+
+        }
         private void reg_button_Click(object sender, EventArgs e)
         {
 
@@ -101,7 +130,12 @@ namespace test_DataBase
 
 
             }
+            if (checkData() == true)
+            {
 
+                MessageBox.Show("Аккаунт с таким логином уже существует!", "Ошибка!");
+                return;
+            }
 
             var password = Password_TextBox2.Text;
             
@@ -144,10 +178,7 @@ namespace test_DataBase
             }
             
 
-            if (checkuser())
-            {
-                return;
-            }
+            
 
             var medcard = newMedCard();
 
@@ -180,31 +211,7 @@ namespace test_DataBase
         }
 
        
-        private Boolean checkuser()
-        {
-
-            var loginUser = login_TextBox2.Text;
-            var passUser = Password_TextBox2.Text;
-
-            SqlDataAdapter adapter = new SqlDataAdapter();  
-            DataTable table = new DataTable();
-            string querystring = $"select Login_user, Password_user from Пациент where Login_user = '{loginUser}' and Password_user = '{passUser}'";
-            SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
-
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
-            
-            if(table.Rows.Count > 0 ) 
-            {
-                MessageBox.Show("Пользователь уже существует!");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
+        
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {

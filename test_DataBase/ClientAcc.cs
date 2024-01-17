@@ -138,5 +138,10 @@ namespace test_DataBase
             label3.Text = DateTime.Now.ToString("HH:mm.ss");
             label4.Text = DateTime.Now.ToString("dd.MM.yyyy");
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

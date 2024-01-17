@@ -63,6 +63,12 @@
     <Compile Include="AboutDoctor.Designer.cs">
       <DependentUpon>AboutDoctor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Discount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Discount.Designer.cs">
+      <DependentUpon>Discount.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_Client\Statistic_UserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -247,6 +253,9 @@
     </Compile>
     <EmbeddedResource Include="AboutDoctor.resx">
       <DependentUpon>AboutDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Discount.resx">
+      <DependentUpon>Discount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl_Client\Statistic_UserControl.resx">
       <DependentUpon>Statistic_UserControl.cs</DependentUpon>
