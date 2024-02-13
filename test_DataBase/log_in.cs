@@ -29,7 +29,7 @@ namespace test_DataBase
             
             Thread t = new Thread(new ThreadStart(Icon2));
             t.Start();
-            Thread.Sleep(500);
+            Thread.Sleep(300);
             t.Abort();
             
             InitializeComponent();

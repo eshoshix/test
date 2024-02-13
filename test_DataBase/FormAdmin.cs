@@ -22,26 +22,10 @@ namespace test_DataBase
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void FormAdmin_Load(object sender, EventArgs e)
         {
-            
-           
-           
+            label();
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            AddDoctor AddDoctor = new AddDoctor();
-            
-            AddDoctor.ShowDialog();
-
-
-
-        }
-
-
-
         private void label()
         {
 
@@ -70,74 +54,39 @@ namespace test_DataBase
 
 
         }
-
-
-
-        private void FormAdmin_Load(object sender, EventArgs e)
+        private void addUserControl(UserControl userControl)
         {
-            label();
-           
+            userControl.Dock = DockStyle.Fill;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+
+      
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            appointments_UserControl appD = new appointments_UserControl(CurrentId);
+            addUserControl(appD);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Visit_UserControl Vs1 = new Visit_UserControl(CurrentId);
+            addUserControl(Vs1);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DiagnozForm Diagnoz = new DiagnozForm();
-         
-            Diagnoz.ShowDialog();
+            Schedule_Edit_UserControl appD = new Schedule_Edit_UserControl(CurrentId);
+            addUserControl(appD);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            PlannedVisits PlannedVisits = new PlannedVisits(CurrentId);
-
-            PlannedVisits.Show();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-            admin_Login login = new admin_Login();
-            login.Close();
-        }
-
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-           timetable tt = new timetable(CurrentId);
-            tt.Show();
-
-        }
-
-        
-          
-        
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            int id = CurrentId;
-            Visit vv = new Visit(id);
-            vv.Show();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void button6_Click_1(object sender, EventArgs e)
-        {
-
-            EditDoctorsAcc efd = new EditDoctorsAcc(CurrentId);  
-            efd.ShowDialog();
+            int ID = CurrentId;
+           Edit_cabinet_UserControl appD = new Edit_cabinet_UserControl(ID);
+            addUserControl(appD);
         }
     }
 }

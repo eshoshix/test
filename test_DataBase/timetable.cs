@@ -146,7 +146,7 @@ namespace test_DataBase
             dataGridView1.Columns.Add("Время_Конца_Работы", "Время конца работы");
             dataGridView1.Columns[6].DefaultCellStyle.Format = "HH:mm:ss";
             dataGridView1.Columns.Add("Время_Приема", "Время приема");
-
+            dataGridView1.Columns[7].DefaultCellStyle.Format = "HH:mm:ss";
 
         }
 

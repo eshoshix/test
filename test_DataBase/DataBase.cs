@@ -12,8 +12,8 @@ namespace test_DataBase
 {
      class DataBase
      {
-
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=EXPC; Initial Catalog=EbaTest2; Integrated Security=True");
+        //@"Data Source=5.44.47.210; Initial Catalog=ebaTest; Integrated Security=false; User ID=sa;Password=OJX0jtd4srKcjvcx-aa3;"
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=exPC; Initial Catalog=EbaTest2; Integrated Security=True");
 
 
         public void openConnection()
