@@ -135,7 +135,8 @@ namespace test_DataBase
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label3.Text = DateTime.Now.ToString("HH:mm.ss");
+            
+            label3.Text = DateTime.Now.ToString("HH:mm:ss");
             label4.Text = DateTime.Now.ToString("dd.MM.yyyy");
         }
 
@@ -143,5 +144,12 @@ namespace test_DataBase
         {
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

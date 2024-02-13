@@ -62,12 +62,7 @@ namespace test_DataBase
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-            Add_Description_About_Clinic_UserControl mm = new Add_Description_About_Clinic_UserControl();
-            addUserControl(mm);
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -89,15 +84,7 @@ namespace test_DataBase
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Add_Description_About_Clinic_UserControl asd = new Add_Description_About_Clinic_UserControl();
-            addUserControl(asd);
 
-        }
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            Add_Description_About_Clinic_UserControl ds = new Add_Description_About_Clinic_UserControl();
-            addUserControl(ds);
         }
     }
 }

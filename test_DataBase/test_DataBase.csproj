@@ -63,6 +63,30 @@
     <Compile Include="AboutDoctor.Designer.cs">
       <DependentUpon>AboutDoctor.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControl_Doc\Edit_cabinet_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Doc\Edit_cabinet_UserControl.Designer.cs">
+      <DependentUpon>Edit_cabinet_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Talon_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Talon_Print.Designer.cs">
+      <DependentUpon>Talon_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Doc\Schedule_Edit_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Doc\Schedule_Edit_UserControl.Designer.cs">
+      <DependentUpon>Schedule_Edit_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Doc\appointments_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Doc\appointments_UserControl.Designer.cs">
+      <DependentUpon>appointments_UserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Discount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,12 +104,6 @@
     </Compile>
     <Compile Include="UserControl_Client\LastAppointment_UserControl.Designer.cs">
       <DependentUpon>LastAppointment_UserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl_Admin\Add_Description_About_Clinic_UserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl_Admin\Add_Description_About_Clinic_UserControl.Designer.cs">
-      <DependentUpon>Add_Description_About_Clinic_UserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl_Client\AboutUs_UserControl.cs">
       <SubType>UserControl</SubType>
@@ -251,20 +269,38 @@
     <Compile Include="Visit2.Designer.cs">
       <DependentUpon>Visit2.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControl_Doc\Visit_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Doc\Visit_UserControl.Designer.cs">
+      <DependentUpon>Visit_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Doc\Visit2_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Doc\Visit2_UserControl.Designer.cs">
+      <DependentUpon>Visit2_UserControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutDoctor.resx">
       <DependentUpon>AboutDoctor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Discount.resx">
       <DependentUpon>Discount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Doc\Edit_cabinet_UserControl.resx">
+      <DependentUpon>Edit_cabinet_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Talon_Print.resx">
+      <DependentUpon>Talon_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Doc\Schedule_Edit_UserControl.resx">
+      <DependentUpon>Schedule_Edit_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl_Client\Statistic_UserControl.resx">
       <DependentUpon>Statistic_UserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl_Client\LastAppointment_UserControl.resx">
       <DependentUpon>LastAppointment_UserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControl_Admin\Add_Description_About_Clinic_UserControl.resx">
-      <DependentUpon>Add_Description_About_Clinic_UserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl_Client\AboutUs_UserControl.resx">
       <DependentUpon>AboutUs_UserControl.cs</DependentUpon>
@@ -348,11 +384,20 @@
     <EmbeddedResource Include="UserControl_Client\NW_UserControl.resx">
       <DependentUpon>NW_UserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Doc\appointments_UserControl.resx">
+      <DependentUpon>appointments_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visit.resx">
       <DependentUpon>Visit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visit2.resx">
       <DependentUpon>Visit2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Doc\Visit_UserControl.resx">
+      <DependentUpon>Visit_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Doc\Visit2_UserControl.resx">
+      <DependentUpon>Visit2_UserControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="database1DataSet.xsc">
       <DependentUpon>database1DataSet.xsd</DependentUpon>
