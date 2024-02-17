@@ -63,11 +63,11 @@
     <Compile Include="AboutDoctor.Designer.cs">
       <DependentUpon>AboutDoctor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl_Doc\Edit_cabinet_UserControl.cs">
+    <Compile Include="UserControl_Doc\Edit_AccDoctor_UserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl_Doc\Edit_cabinet_UserControl.Designer.cs">
-      <DependentUpon>Edit_cabinet_UserControl.cs</DependentUpon>
+    <Compile Include="UserControl_Doc\Edit_AccDoctor_UserControl.designer.cs">
+      <DependentUpon>Edit_AccDoctor_UserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Talon_Print.cs">
       <SubType>Form</SubType>
@@ -287,8 +287,8 @@
     <EmbeddedResource Include="Discount.resx">
       <DependentUpon>Discount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl_Doc\Edit_cabinet_UserControl.resx">
-      <DependentUpon>Edit_cabinet_UserControl.cs</DependentUpon>
+    <EmbeddedResource Include="UserControl_Doc\Edit_AccDoctor_UserControl.resx">
+      <DependentUpon>Edit_AccDoctor_UserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Talon_Print.resx">
       <DependentUpon>Talon_Print.cs</DependentUpon>

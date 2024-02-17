@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace test_DataBase
@@ -49,7 +51,7 @@ namespace test_DataBase
                 chart1.Series.Add(column2 + " " + column1 + "%" + " " + "(" + column3 + " чел." + ")".ToString());
                 chart1.Series[column2 + " " + column1 + "%" + " " +"("+ column3 + " чел." + ")".ToString()].Points.AddXY(count, column1);
 
-
+               
                 count++;
 
             }
@@ -104,8 +106,17 @@ namespace test_DataBase
                 chart3.Series.Add("Вы болели " + "\"" + column1.ToString() + "\"" + " " + column2.ToString() + " раз");
                 chart3.Series["Вы болели " + "\"" + column1.ToString() + "\"" + " " + column2.ToString() + " раз"].Points.AddXY(count, column2);
 
-                
+
                 count++;
+               
+               
+
+            }
+            if (count < 2)
+            {
+                label6.Text = "Статистика отсутствует";
+                label5.Text = "Статистика отсутствует";
+                label4.Text = "Статистика отсутствует";
 
             }
             reader.Close();
@@ -121,6 +132,11 @@ namespace test_DataBase
         private void chart3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void chart3_MouseMove(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }

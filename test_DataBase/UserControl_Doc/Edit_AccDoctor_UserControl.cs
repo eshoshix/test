@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace test_DataBase
 {
-    public partial class Edit_cabinet_UserControl : UserControl
+    public partial class Edit_AccDoctor_UserControl : UserControl
     {
         DataBase DataBase = new DataBase();
         int IDCurrent;
-        public Edit_cabinet_UserControl(int ID)
+        public Edit_AccDoctor_UserControl(int ID)
         {
             IDCurrent = ID;
             
@@ -222,6 +222,20 @@ namespace test_DataBase
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image files (*.jpg, *jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                img = ofd.FileName.ToString();
+                pictureBox1.ImageLocation = img;
+                UploadPhoto();
+
+
+            }
+            else return;
+           
+
             var name = textBox6.Text;
             var spec = comboBox2.Text;
             var cost = textBox3.Text;
@@ -264,18 +278,7 @@ namespace test_DataBase
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Image files (*.jpg, *jpeg, *.png) | *.jpg; *.jpeg; *.png";
-            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                img = ofd.FileName.ToString();
-                pictureBox1.ImageLocation = img;
-                UploadPhoto();
-                MessageBox.Show("Фотография обновлена!", "Успех");
-
-            }
-            return;
+           
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
