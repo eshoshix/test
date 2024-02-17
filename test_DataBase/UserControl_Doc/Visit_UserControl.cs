@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +16,12 @@ namespace test_DataBase
     {
         DataBase DataBase = new DataBase();
         int CurrentDoctor;
+        private bool ShowDown = false;
         public Visit_UserControl(int ID)
         {
             InitializeComponent();
             CurrentDoctor = ID;
+           panel2.Visible = false;
         }
 
         private void Visit_UserControl_Load(object sender, EventArgs e)
@@ -374,6 +377,8 @@ namespace test_DataBase
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             button2DizClick();
+            CurrentSickWork();
+
         }
         private void Visit_Click(object sender, EventArgs e)
         {
@@ -392,36 +397,16 @@ namespace test_DataBase
                 return;
 
             }
+            
+            CurrentSickWork();
+         
+            timer1.Start();
+        
 
 
-            RefreshDataGrid2(dataGridView2);
-            var idCellSick = CellIdSickleave();
-            DataBase.closeConnection();
-            var connection = DataBase.getConnection();
-            connection.Open();
-            String querystring2 = $"SELECT ID_Больничного,ID_диагноза, ID_Врача from Больничные where ID_Больничного = '{idCellSick}'";
-
-            SqlCommand command2 = new SqlCommand(querystring2, connection);
-
-            using (SqlDataReader reader = command2.ExecuteReader())
-            {
-                var userExist = reader.Read();
-
-                if (userExist == false)
-                {
 
 
-                    return;
-                }
-                
-                var Id = reader.GetInt32(0);
 
-                Visit2_UserControl vs2 = new Visit2_UserControl(Id,CurrentDoctor);
-                addUserControl(vs2);
-                
-                RefreshDataGrid2(dataGridView2);
-
-            }
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -488,14 +473,139 @@ namespace test_DataBase
             dataGridView1.ClearSelection();
             dataGridView2.ClearSelection();
         }
-        private void addUserControl(UserControl userControl)
+     
+      
+
+
+
+        private void CurrentSickWork()
         {
-            userControl.Dock = DockStyle.Fill;
-            panel1.Controls.Clear();
-            panel1.Controls.Add(userControl);
-            userControl.BringToFront();
+            var CurrentIDSick = CellIdSickleave();
+            string querystring = $"select ID_Больничного,Фамилия, Имя, Отчество, Наименование,ФИО,Cast (Дата_Начала_Заболевания as Date)as 'Дата_Начала_Заболевания1',Дата_Конца_Заболевания from Больничные join Пациент on Пациент.ID_Пациента = Больничные.ID_Пациента inner join Диагноз on Диагноз.ID_Диагноза = Больничные.ID_Диагноза inner join Врач on Врач.ID_Врача = Больничные.ID_Врача where [ID_Больничного] = '{CurrentIDSick}'";
+            SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
+            DataBase.openConnection();
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                reader.Read();
+
+                string column0Data = reader["ID_Больничного"].ToString();
+                string column1Data = reader["Фамилия"].ToString();
+
+                string column2Data = reader["Имя"].ToString();
+
+                string column3Data = reader["Отчество"].ToString();
+
+                string column4Data = reader["Наименование"].ToString();
+
+                string column5Data = reader["ФИО"].ToString();
+
+                string column6Data = reader["Дата_Начала_Заболевания1"].ToString();
+
+
+
+
+                textBox5.Text = $"{column2Data} {column1Data} {column3Data}";
+                textBox6.Text = $"{column4Data}";
+                textBox7.Text = $"{column5Data}";
+                textBox8.Text = $"{column6Data}";
+
+            }
+
         }
+
+
+        private bool? CheckSickLeave()
+        {
+            var CurrentIDSick = CellIdSickleave();
+            string querystring = $"Select * from Больничные where [ID_Больничного] = '{CurrentIDSick}' and Дата_конца_заболевания is null and Дата_Выписки is null";
+            SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
+            command.ExecuteNonQuery();
+            int count = 0;
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+
+
+                while (reader.Read())
+                {
+                    count++;
+
+
+                }
+
+
+            }
+            if (count > 0)
+            {
+
+                return true;
+            }
+            return false;
+
+
+        }
+      
+        
+
+       
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            var CurrentIDSick = CellIdSickleave();
+            var date = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm");
+            var dateNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            string querystring = $"UPDATE Больничные SET Дата_конца_заболевания = CONVERT(DATETIME, '{date}', 120), Дата_Выписки = CONVERT(DATETIME, '{dateNow}', 120) where [ID_Больничного] = '{CurrentIDSick}'";
+            SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
+            command.ExecuteNonQuery();
+            DataBase.openConnection();
+            MessageBox.Show("Пациент успешно выписан с больничного", "Успех");
+            RefreshDataGrid2(dataGridView2);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+          
+            timer1.Start();
+
+        
+
+        }
+      
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(ShowDown == false)
+            {
+                panel2.Visible = true;
+                panel2.Height += 30;
+                if (panel2.Size == panel2.MaximumSize) 
+                {
+                    timer1.Stop();
+                    ShowDown = true;
+                   
+                }
+               
+            }
+            else
+            {
+                panel2.Visible = false;
+                panel2.Height -= 30;
+                
+                if (panel2.Size == panel2.MinimumSize)
+                {
+                    timer1.Stop();
+                    ShowDown = false;
+                   
+                }
+            }
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
         {
 
         }

@@ -71,9 +71,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(258, 58);
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.button3.Location = new System.Drawing.Point(639, 58);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(163, 32);
+            this.button3.Size = new System.Drawing.Size(196, 32);
             this.button3.TabIndex = 14;
             this.button3.Text = "Статистика заболеваний ";
             this.button3.UseVisualStyleBackColor = true;
@@ -81,9 +82,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(427, 58);
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.button1.Location = new System.Drawing.Point(235, 58);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 32);
+            this.button1.Size = new System.Drawing.Size(196, 32);
             this.button1.TabIndex = 13;
             this.button1.Text = "Оценить приемы";
             this.button1.UseVisualStyleBackColor = true;
@@ -98,9 +100,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(596, 58);
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.button2.Location = new System.Drawing.Point(437, 58);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 32);
+            this.button2.Size = new System.Drawing.Size(196, 32);
             this.button2.TabIndex = 11;
             this.button2.Text = "О нас";
             this.button2.UseVisualStyleBackColor = true;
@@ -111,7 +114,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.label6.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label6.Location = new System.Drawing.Point(399, 11);
+            this.label6.Location = new System.Drawing.Point(426, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(207, 30);
             this.label6.TabIndex = 9;

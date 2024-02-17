@@ -1,6 +1,6 @@
 ﻿namespace test_DataBase
 {
-    partial class Edit_cabinet_UserControl
+    partial class Edit_AccDoctor_UserControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

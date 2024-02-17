@@ -85,7 +85,7 @@ namespace test_DataBase
         private void button4_Click(object sender, EventArgs e)
         {
             int ID = CurrentId;
-           Edit_cabinet_UserControl appD = new Edit_cabinet_UserControl(ID);
+           Edit_AccDoctor_UserControl appD = new Edit_AccDoctor_UserControl(ID);
             addUserControl(appD);
         }
     }
