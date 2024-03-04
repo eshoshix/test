@@ -97,7 +97,7 @@ namespace test_DataBase
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            timeImput();
+           
             var doctor = comboBox3.SelectedIndex;
             if (doctor == -1)
             {
@@ -173,6 +173,7 @@ namespace test_DataBase
 
             richTextBox1.Clear();
             MessageBox.Show("Вы успешно записаны на прием", "Успех!");
+            comboBoxTime();
 
 
 
@@ -343,7 +344,7 @@ namespace test_DataBase
             }
             var date = dateTimePicker1.Value.ToString("1900-01-01") + " " + comboBox2.Text;
             var doctorId = savedDoctorIDs2[doctor];
-            string querystring = $"select ID_Врача,День_Недели, Время_Начала_Работы, Время_Конца_Работы from Расписание where Время_Начала_Работы < CAST('{date}' AS DATETIME2(3)) and Время_Конца_Работы > CAST('{date}' AS DATETIME2(3)) and День_Недели = '{day()}' and ID_Врача = {doctorId}";
+            string querystring = $"select ID_Врача,День_Недели, Время_Начала_Работы, Время_Конца_Работы from Расписание where Время_Начала_Работы <= CAST('{date}' AS DATETIME2(3)) and Время_Конца_Работы >= CAST('{date}' AS DATETIME2(3)) and День_Недели = '{day()}' and ID_Врача = {doctorId}";
             SqlCommand command = new SqlCommand(querystring, DataBase.getConnection());
             DataBase.openConnection();
             command.ExecuteNonQuery();
@@ -424,12 +425,7 @@ namespace test_DataBase
 
         }
 
-        private void timeImput()
-        {
-           
-            
-
-        }
+       
 
         List<DateTime> savedDates2 = new List<DateTime>();
         private void comboBoxTime()
@@ -789,11 +785,7 @@ namespace test_DataBase
         private void comboBox2_Click(object sender, EventArgs e)
         {
 
-            if(comboBox2.Items.Count < 1)
-            {
-                MessageBox.Show("Врач не работает в заданную дату","Ошибка!");
-                return;
-            }
+          
 
 
         }

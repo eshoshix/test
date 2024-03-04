@@ -275,12 +275,6 @@
     <Compile Include="UserControl_Doc\Visit_UserControl.Designer.cs">
       <DependentUpon>Visit_UserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl_Doc\Visit2_UserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl_Doc\Visit2_UserControl.Designer.cs">
-      <DependentUpon>Visit2_UserControl.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AboutDoctor.resx">
       <DependentUpon>AboutDoctor.cs</DependentUpon>
     </EmbeddedResource>
@@ -395,9 +389,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl_Doc\Visit_UserControl.resx">
       <DependentUpon>Visit_UserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControl_Doc\Visit2_UserControl.resx">
-      <DependentUpon>Visit2_UserControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="database1DataSet.xsc">
       <DependentUpon>database1DataSet.xsd</DependentUpon>
